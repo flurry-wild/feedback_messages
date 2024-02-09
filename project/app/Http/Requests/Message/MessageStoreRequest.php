@@ -20,4 +20,24 @@ class MessageStoreRequest extends FormRequest
             'agreement' => 'required|string|in:true'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Обязательный параметр :attribute',
+            'max' => 'Слишком длинный параметр :attribute',
+            'email' => 'Неверный формат электронной почты',
+            'agreement.in' => 'Необходимо согласие на обработку персональных данных'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Имя',
+            'email' => 'Email',
+            'message' => 'Сообщение',
+            'agreement' => 'Согласие на обработку персональных данных'
+        ];
+    }
 }

@@ -35,6 +35,19 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal-error" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ошибка</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-error-text"></div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('scripts')
     <script>
@@ -54,6 +67,15 @@
                 success: function(response) {
                     $('#modal').modal('show');
                 },
+                error :function( data ) {
+                    if (data.status === 422) {
+                        $.each(data.responseJSON.errors, function (key, value) {
+                            $('#modal-error-text').append(value+"<br/>");
+                        });
+
+                        $('#modal-error').modal('show');
+                    }
+                }
             });
         });
 
