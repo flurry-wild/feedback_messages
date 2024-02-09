@@ -35,6 +35,19 @@ class MessageService
         return Message::find($messageId);
     }
 
+    public function getOneOptional(int $messageId, ?array $params = [])
+    {
+        $query = static::query();
+
+        $query->where('id', $messageId);
+
+        if (! empty($params)) {
+            $query->select($params['fields']);
+        }
+
+        return $query->first();
+    }
+
     public function getList(?array $params)
     {
         if (!isset($params['page'])) {

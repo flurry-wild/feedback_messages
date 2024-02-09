@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Message\MessageIndexRequest;
+use App\Http\Requests\Message\MessageShowOptionalRequest;
 use App\Http\Requests\Message\MessageStoreRequest;
 use App\Http\Requests\Message\MessageUpdateRequest;
 use App\Services\MessageService;
@@ -31,6 +32,11 @@ class MessagesController extends Controller
     public function show(int $messageId)
     {
         return view('messages.show', ['message' => $this->service->getOne($messageId)]);
+    }
+
+    public function showOptional(int $messageId, MessageShowOptionalRequest $request)
+    {
+        return new JsonResponse($this->service->getOneOptional($messageId, $request->validated()));
     }
 
     public function edit(int $messageId)

@@ -20,5 +20,6 @@ Route::post('messages', [MessagesController::class, 'store']);
 Route::get('/messages/excel', [MessagesController::class, 'excelAll']);
 
 Route::get('messages/{messageId}', [MessagesController::class, 'show']);
+Route::get('messagesOptional/{messageId}', [MessagesController::class, 'showOptional']);
 Route::get('/messages/{messageId}/edit', [MessagesController::class, 'edit']);
 Route::put('/messages/{messageId}', [MessagesController::class, 'update']);
